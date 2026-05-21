@@ -109,16 +109,18 @@ Xem [docs/vi/installation.md](docs/vi/installation.md) để biết yêu cầu c
 
 ## Sử dụng
 
-Phạm vi mặc định là toàn bộ repo. Đây là thay đổi có chủ đích so với các phiên bản trước và phản ánh đúng cách các đội ngũ thường yêu cầu một đợt rà soát bảo mật.
+Phạm vi mặc định là toàn bộ folder. Đây là thay đổi có chủ đích so với các phiên bản trước và phản ánh đúng cách các đội ngũ thường yêu cầu một đợt rà soát bảo mật.
 
 ```bash
-/vbs-scan-security                       # quét toàn bộ repo (mặc định)
+/vbs-scan-security                       # quét toàn bộ folder (mặc định)
 /vbs-scan-security uncommitted           # chỉ quét thay đổi chưa commit
 /vbs-scan-security pr id 42 lang=en      # quét PR số 42, báo cáo tiếng Anh
 /vbs-scan-security commit within 7days   # quét các commit trong 7 ngày gần nhất
 ```
 
-Báo cáo được lưu tại `vbsec-reports/scan-<timestamp>.md` trong chính repo được quét, phục vụ việc đọc lại, chia sẻ với reviewer và đính kèm vào ticket khắc phục.
+**Chạy được mà không cần git.** Vibe coder thường không `git init` trước khi paste code AI sinh vào folder. Scope mặc định (`/vbs-scan-security`) sẽ walk filesystem trực tiếp khi không có `.git/` — các folder build/vendored thông dụng được loại tự động. Các scope phụ thuộc git (`uncommitted`, `staged`, `commit within`, `commit id`, `pr id`) vẫn cần git repository và sẽ in message gợi ý dùng scope mặc định hoặc init git.
+
+Báo cáo được lưu tại `vbsec-reports/scan-<timestamp>.md` trong chính folder được quét, phục vụ việc đọc lại, chia sẻ với reviewer và đính kèm vào ticket khắc phục.
 
 Xem [docs/vi/usage.md](docs/vi/usage.md) để biết toàn bộ tuỳ chọn, bao gồm `staged`, quét theo commit cụ thể, và quét pull request qua `gh`.
 

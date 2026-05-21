@@ -126,6 +126,8 @@ Key→text mapping for report output when `lang=en`. SKILL.md and workflows must
 | Key | Text |
 |---|---|
 | `msg_no_git` | Not a git repository. Please `cd` into a git repo first. |
+| `msg_scope_needs_git` | This scope requires a git repository. Run the skill with no scope (defaults to scanning the entire folder), or init git first. Tip: `git init && git add .` |
+| `msg_no_git_note` | ⚠️ Not a git repository — scanned all files in the folder. Did not respect `.gitignore` (none applicable). |
 | `msg_no_files` | No files in scan scope. |
 | `msg_routing_small` | SMALL mode: inline scan |
 | `msg_routing_large` | LARGE mode: chunking into {n} groups, spawning sub-agents |

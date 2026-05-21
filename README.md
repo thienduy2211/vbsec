@@ -112,13 +112,15 @@ See [docs/en/installation.md](docs/en/installation.md) for prerequisites, troubl
 The default scope is the entire repository. This is a deliberate change from earlier versions and matches how teams typically request a security audit.
 
 ```bash
-/vbs-scan-security                       # scan entire repo (default)
+/vbs-scan-security                       # scan entire folder (default)
 /vbs-scan-security uncommitted           # only scan uncommitted changes
 /vbs-scan-security pr id 42 lang=en      # scan a PR, report in English
 /vbs-scan-security commit within 7days   # scan last 7 days of commits
 ```
 
-Reports are saved to `vbsec-reports/scan-<timestamp>.md` inside the scanned repository for re-reading, sharing with reviewers, and attaching to remediation tickets.
+**Works without git.** Vibe coders rarely init `git` before pasting AI-generated code into a folder. The default scope (`/vbs-scan-security`) walks the filesystem directly when no `.git/` is present — common build/vendored folders are excluded automatically. Git-specific scopes (`uncommitted`, `staged`, `commit within`, `commit id`, `pr id`) still require a git repository and will print a helpful message asking you to init git or fall back to the default scope.
+
+Reports are saved to `vbsec-reports/scan-<timestamp>.md` inside the scanned folder for re-reading, sharing with reviewers, and attaching to remediation tickets.
 
 See [docs/en/usage.md](docs/en/usage.md) for all options including `staged`, single-commit scans, and PR scanning via `gh`.
 
